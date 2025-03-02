@@ -12,6 +12,7 @@
   "dependencies": {
     "@monaco-editor/react": "^4.7.0",
     "chart.js": "^4.4.7",
+    "face-api.js": "^0.22.2",
     "framer-motion": "^12.4.3",
     "lucide-react": "^0.475.0",
     "monaco-editor": "^0.52.2",

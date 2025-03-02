@@ -1,0 +1,64 @@
+[
+  {
+    "id": 1,
+    "title": "Create a Responsive Navbar",
+    "description": "Design a responsive navigation bar using HTML, CSS, and Flexbox/Grid. The navbar should contain three links: Home, About, Contact. On mobile view, a hamburger menu should be displayed.",
+    "difficulty": "Beginner",
+    "tags": ["HTML", "CSS", "Responsive Design"],
+    "acceptance_criteria": [
+      "Desktop should have a horizontal navbar",
+      "Mobile should show a hamburger menu",
+      "No inline CSS allowed"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Create a Dark Mode Toggle",
+    "description": "Develop a dark mode toggle button that switches the theme between light and dark modes. The user's preference should be stored in LocalStorage and persist after a page refresh.",
+    "difficulty": "Beginner",
+    "tags": ["JavaScript", "LocalStorage", "Theme Switch"],
+    "acceptance_criteria": [
+      "Default theme should be light mode",
+      "Dark mode toggle should work correctly",
+      "Theme should persist on page reload"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Fetch and Display User Data from API",
+    "description": "Fetch data from the given API and display a list of users with their names and email addresses. Implement a search bar to filter users based on their names.",
+    "difficulty": "Intermediate",
+    "tags": ["React", "API Fetching", "Search Filter"],
+    "api_url": "https://jsonplaceholder.typicode.com/users",
+    "acceptance_criteria": [
+      "API data should be fetched and displayed",
+      "Search functionality should work",
+      "Use React for implementation"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Build a Custom Modal Component in React",
+    "description": "Develop a reusable modal component in React that opens when a button is clicked. The modal should close when clicking outside, pressing the Escape key, or clicking the close button.",
+    "difficulty": "Intermediate",
+    "tags": ["React", "UI Components", "Modal"],
+    "acceptance_criteria": [
+      "Styled-components or TailwindCSS should be used",
+      "Modal should close on Escape key press",
+      "Fade-in and fade-out animation required"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Implement Debounced Search in React",
+    "description": "Create a search input that waits 500ms after typing before making an API call to fetch results.",
+    "difficulty": "Advanced",
+    "tags": ["React", "Debounce", "API Optimization"],
+    "api_url": "https://api.example.com/search?q=your_query",
+    "acceptance_criteria": [
+      "Debounce functionality should be implemented",
+      "Loading state should be shown while fetching",
+      "React Query or custom hooks should be used"
+    ]
+  }
+]

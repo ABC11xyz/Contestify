@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Split from "react-split";
 import { ArrowLeft, User, RefreshCw, Play, Upload } from "lucide-react";
 import Editor from "@monaco-editor/react";
-import problems from "../../../../backend/utils/problems";
+import problems from "../../../../../../backend/utils/problems";
 
 const languages = [
   { label: "C", value: "c", id: 50 },
@@ -37,7 +37,7 @@ const Code = () => {
   const [output, setOutput] = useState("");
   const [randomProblems, setRandomProblems] = useState([]);
   const [selectedProblem, setSelectedProblem] = useState(null);
-  const [sidebar, setSidebar] = useState(false);
+  const [sidebar, setSidebar] = useState(true);
 
   const getRandomProblems = () => {
     let shuffled = [...problems].sort(() => 0.5 - Math.random());
@@ -51,14 +51,18 @@ const Code = () => {
   }, [selectedLang]);
 
   const runCode = async () => {
+    if (!selectedProblem) {
+      setOutput("Please select a problem first !");
+      return;
+    }
     const selectedLanguage = languages.find(
       (lang) => lang.value === selectedLang
     );
     const requestData = {
       language_id: selectedLanguage?.id || 71,
       source_code: code,
-      stdin: "nums=[1,-3,2,3,-4]",
-      expected_output: "5",
+      stdin: selectedProblem.example.Input || "",
+      expected_output: selectedProblem.example.Output || "",
       cpu_time_limit: 2,
       memory_limit: 128000,
     };

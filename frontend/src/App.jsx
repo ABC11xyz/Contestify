@@ -2,7 +2,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
-import Code from "./pages/Home/Code";
+import Code from "./pages/Home/CategoryPage/dsa/Code";
 import Contest from "./pages/Home/CategoryPage/Contest";
 import Profile from "./pages/Home/Profile";
 import Register from "./pages/Home/Register";
@@ -13,7 +13,7 @@ import BackendDevelopment from "./pages/Home/CategoryPage/BackendDevloment";
 import DSAChallenge from "./pages/Home/CategoryPage/DSAChallenge";
 import FullstackDevelopment from "./pages/Home/CategoryPage/FullstackDevelopment";
 import MobileDevelopment from "./pages/Home/CategoryPage/MobileDevelopment ";
-import ContestRulesPage from "./pages/Home/CategoryPage/ContestRulesPage ";
+import ContestRulesPage from "./pages/Home/CategoryPage/dsa/ContestRulesPage ";
 
 const App = () => {
   return (
