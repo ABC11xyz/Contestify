@@ -5,6 +5,8 @@ import { ArrowLeft, User, RefreshCw, Play, Upload } from "lucide-react";
 import Editor from "@monaco-editor/react";
 import problems from "../../../../../../backend/utils/problems";
 import DetectMobileCamera from "../../../../components/DetectMobileCamera";
+import VideoFeed from "../../../../components/VideoFeed.jsx";
+import DetectMultipleFaces from "../../../../components/DetectMultipleFaces";
 
 const languages = [
   { label: "C", value: "c", id: 50 },
@@ -41,6 +43,7 @@ const Code = () => {
   const [sidebar, setSidebar] = useState(true);
   const [switchCount, setSwitchCount] = useState(0);
   const videoRef = useRef(null);
+  const [videoElement, setVideoElement] = useState(null);
   const getRandomProblems = () => {
     let shuffled = [...problems].sort(() => 0.5 - Math.random());
     setRandomProblems(shuffled.slice(0, 4));
@@ -153,7 +156,9 @@ const Code = () => {
           <User size={24} />
         </div>
       </div>
-      <DetectMobileCamera></DetectMobileCamera>
+      <VideoFeed onStreamReady={setVideoElement} />
+      <DetectMultipleFaces videoElement={videoElement} />
+      <DetectMobileCamera videoElement={videoElement} />
       <Split
         className="flex h-[calc(100vh-60px)]"
         sizes={[40, 60]}
