@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Split from "react-split";
 import { ArrowLeft, User, RefreshCw, Play, Upload } from "lucide-react";
 import Editor from "@monaco-editor/react";
 import problems from "../../../../../../backend/utils/problems";
+import DetectMobileCamera from "../../../../components/DetectMobileCamera";
 
 const languages = [
   { label: "C", value: "c", id: 50 },
@@ -38,18 +39,50 @@ const Code = () => {
   const [randomProblems, setRandomProblems] = useState([]);
   const [selectedProblem, setSelectedProblem] = useState(null);
   const [sidebar, setSidebar] = useState(true);
-
+  const [switchCount, setSwitchCount] = useState(0);
+  const videoRef = useRef(null);
   const getRandomProblems = () => {
     let shuffled = [...problems].sort(() => 0.5 - Math.random());
     setRandomProblems(shuffled.slice(0, 4));
   };
 
   useEffect(() => {
-    getRandomProblems();
-    console.log(code);
-    console.log(selectedLang);
-  }, [selectedLang]);
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "hidden") {
+        setSwitchCount((prev) => prev + 1);
+      }
+    };
 
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (switchCount == 1)
+      alert("Don't switch tab otherwise your contest will be autoSubmitted !");
+    if (switchCount > 2) {
+      navigate("/submit"); // Redirect after 2+ switches
+    }
+  }, [switchCount, navigate]);
+
+  useEffect(() => {
+    getRandomProblems();
+    const disableCopyPaste = (event) => {
+      event.preventDefault(); //prevent default option(copy,paste,right-click)
+    };
+    document.addEventListener("contextmenu", disableCopyPaste);
+    document.addEventListener("copy", disableCopyPaste);
+    document.addEventListener("paste", disableCopyPaste);
+
+    return () => {
+      document.removeEventListener("contextmenu", disableCopyPaste);
+      document.removeEventListener("copy", disableCopyPaste);
+      document.removeEventListener("paste", disableCopyPaste);
+    };
+  }, [selectedLang]);
   const runCode = async () => {
     if (!selectedProblem) {
       setOutput("Please select a problem first !");
@@ -82,7 +115,6 @@ const Code = () => {
       console.error("Error submitting code:", error);
     }
   };
-
   return (
     <div className="bg-[#131313] text-white min-h-screen py-3 px-3">
       <div className="flex items-center justify-between px-4 py-3 bg-[#111111]">
@@ -121,6 +153,7 @@ const Code = () => {
           <User size={24} />
         </div>
       </div>
+      <DetectMobileCamera></DetectMobileCamera>
       <Split
         className="flex h-[calc(100vh-60px)]"
         sizes={[40, 60]}
@@ -146,7 +179,16 @@ const Code = () => {
             ))}
           </div>
         ) : (
-          <div className="bg-[#262626] p-4 overflow-auto">
+          <div
+            className="bg-[#262626] p-4 overflow-auto"
+            style={{
+              userSelect: "none",
+              pointerEvents: "none",
+            }}
+            onCopy={(e) => e.preventDefault()}
+            onCut={(e) => e.preventDefault()}
+            onContextMenu={(e) => e.preventDefault()}
+          >
             {selectedProblem && (
               <div className="mt-4 text-lg">
                 <h1 className="text-3xl font-bold mb-3">

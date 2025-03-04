@@ -1,7 +1,18 @@
 /* eslint-disable react/jsx-key */
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 export default function ContestRulesPage() {
+  const navigate=useNavigate();
+  const videoRef=useRef(null);
+  useEffect(()=>{
+    navigator.mediaDevices.getUserMedia({video:true}).then((stream)=>{
+      window.userCameraStream=stream;
+    })
+    .catch((err)=>{
+      console.error("camera access denied",err);
+      alert("camera access required to proceed");
+    })
+  },[])
   const DsaContestDetails = [
     {
       title: "Contest Overview",
