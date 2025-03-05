@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Split from "react-split";
 import { ArrowLeft, User, RefreshCw, Play, Upload } from "lucide-react";
 import Editor from "@monaco-editor/react";
-import problems from "../../../../../../backend/utils/problems";
+import problems from "../../../../utils/problems.json";
 import DetectMobileCamera from "../../../../components/DetectMobileCamera";
 import VideoFeed from "../../../../components/VideoFeed.jsx";
 import DetectMultipleFaces from "../../../../components/DetectMultipleFaces";

@@ -1,10 +1,11 @@
 import express from "express";
 import axios from "axios";
 import cors from "cors"; // Allow frontend requests
-
+import router from "./routes/auth.route.js";
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use('/api/v1/auth',router);
 
 const JUDGE0_API = "http://localhost:2358"; 
 

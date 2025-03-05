@@ -15,6 +15,8 @@ import FullstackDevelopment from "./pages/Home/CategoryPage/FullstackDevelopment
 import MobileDevelopment from "./pages/Home/CategoryPage/MobileDevelopment ";
 import ContestRulesPage from "./pages/Home/CategoryPage/dsa/ContestRulesPage ";
 import Submit from "./pages/Home/CategoryPage/dsa/Submit";
+import Signup from "./pages/auth/Signup";
+import Login from "./pages/auth/Login";
 
 const App = () => {
   return (
@@ -37,6 +39,8 @@ const App = () => {
         <Route path="/contest/mobiledev" element={<MobileDevelopment />} />
         <Route path='/contest/dsa/contestrules' element={<ContestRulesPage/>}/>
         <Route path="/submit" element={<Submit/>}/>
+        <Route path="/auth/signup" element={<Signup/>}/>
+        <Route path="/auth/login" element={<Login/>}/>
       </Routes>
     </div>
   );
