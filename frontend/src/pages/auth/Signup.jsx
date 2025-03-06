@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Children, useState } from "react";
 import axios from "axios";
 const Signup = () => {
   const [username, setUsername] = useState("");
@@ -23,7 +23,11 @@ const Signup = () => {
       return;
     }
     try {
-      const res=await axios.post('http://localhost:3000/api/v1/auth/signup',{username,email,password})
+      const res = await axios.post('http://localhost:5000/api/v1/auth/signup',
+        {username,email,password},
+       {withCredentials : true}
+      )
+      console.log(res);
     } catch (error) {
       throw new error(error);
     }
